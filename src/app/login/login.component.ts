@@ -37,9 +37,11 @@ export class LoginComponent {
 
     this.authService.login(username, password).subscribe(
       (res) => {
+        console.log('✅ Login successful:', res); // Log the success response
         this.snackBar.open('Login successful', 'Ok', { duration: 5000 });
       },
       (error) => {
+        console.error('❌ Login failed:', error); // Log the error response
         this.snackBar.open('Bad credentials', 'ERROR', { duration: 5000 });
       }
     );
