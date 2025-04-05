@@ -11,7 +11,7 @@ const BASIC_URL = 'http://localhost:8081/';
 export class AuthService {
   constructor(
     private http: HttpClient,
-    private userStorageService: UserStorageService
+    private UserStorageService: UserStorageService
   ) {}
 
   register(signupRequest: any): Observable<any> {
@@ -33,8 +33,8 @@ export class AuthService {
           const user = res.body;
 
           if (token && user) {
-            this.userStorageService.saveToken(token);
-            this.userStorageService.saveUser(JSON.stringify(user));
+            this.UserStorageService.saveToken(token);
+            this.UserStorageService.saveUser(user);
             return true;
           }
           return false;
