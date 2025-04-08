@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { UserStorageService } from '../storage/user-storage.service';
 
-const BASIC_URL = 'http://localhost:8081/';
+const BASIC_URL = 'http://localhost:8765/ecomm/';
+// const BASIC_URL = 'http://localhost:8081/';
 
 @Injectable({
   providedIn: 'root',
