@@ -8,10 +8,12 @@ import { UserStorageService } from './services/storage/user-storage.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'ECommerceWeb';
+  title = 'ShopZilla';
 
   isCustomerLoggedIn: boolean = UserStorageService.isCustomerLoggedIn();
   isAdminLoggedIn: boolean = UserStorageService.isAdminLoggedIn();
+  mobileMenuOpen: boolean = false; 
+  isMenuOpen: boolean = false; 
 
   constructor(private router: Router) {}
 
@@ -23,6 +25,17 @@ export class AppComponent {
   }
   logout() {
     UserStorageService.signOut();
+  
     this.router.navigateByUrl('login');
+    
   }
+
+   toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen; // Toggle menu state
+  }
+
+
+
+
+ 
 }

@@ -8,9 +8,12 @@ import { DemoAngularMaterailModule } from './DemoAngularMaterialModule';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './shared/footer/footer.component';
+import { TrackOrderComponent } from './track-order/track-order.component';
+
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, FooterComponent, TrackOrderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

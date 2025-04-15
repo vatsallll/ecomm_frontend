@@ -54,6 +54,15 @@
             </mat-error>
         </mat-form-field>
 
+        
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Number of Products</mat-label>
+            <input matInput type="number" placeholder="Quantity" formControlName="quantity" />
+            <mat-error *ngIf="productForm.get('quantity')?.hasError('required')">
+                This Input Is Required!
+            </mat-error>
+        </mat-form-field>
+
         <button mat-raised-button color="primary" type="submit">Add Product</button>
     </form>
 </div>

@@ -1,0 +1,21 @@
+<div class="center-container">
+    <div class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+            <img [src]="product.processedImg" *ngIf="product.processedImg" alt="{{ product.name }} Image">
+        </div>
+        <div class="product-details">
+            <h2>{{ product.productName }}</h2>
+            <p class="description">{{ product.productDescription }}</p>
+            <p class="price">Price: ${{ product.price }}</p>
+
+        </div>
+        <div class="actions">
+            <button mat-raised-button color="primary" class="update-button" (click) = "addToCart(product.productId)" >Add to
+                cart</button>
+        </div>
+        <div class="remove">
+            <button mat-raised-button color="primary" class="update-button" (click) = "RemoveFromWishlist(product.id)" >Remove from Wishlist
+        </button>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,57 @@
-<p>customer dashboard works!</p>
+<div class="search-container">
+    <form [formGroup]="searchProductForm" class="search-form" (submit)="submitForm()">
+      <mat-form-field appearance="outline" class="search-input">
+        <mat-label>Enter Keyword to search</mat-label>
+        <input matInput formControlName="title" />
+        <button mat-button matSuffix color="primary" [disabled]="searchProductForm.invalid">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </div>
+  
+
+<div class="product-list">
+
+    <mat-card class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+            <img [src]="product.processedImg" alt="product-image">
+        </div>
+        <div class="product-details">
+            <h2 class="product-name" routerLink="/customer/product/{{product.id}}">{{ product.name }}</h2>
+            <p class="product-description">{{ product.description }}</p>
+            <mat-divider></mat-divider>
+            <div class="product-info">
+                <div class="info-row">
+                    <span class="info-label">Price:</span>
+                    <span class="info-value">${{ product.price }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Category:</span>
+                    <span class="info-value">{{ product.categoryName }}</span>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="actions">
+                <!-- If quantity is greater than 0, show clickable button -->
+                <button 
+                  mat-raised-button 
+                  color="primary" 
+                  class="update-button" 
+                  [disabled]="product.quantity === 0" 
+                  (click)="product.quantity > 0 && addToCart(product.id)">
+                  {{ product.quantity > 0 ? 'Add to cart' : 'Out of stock' }}
+                </button>
+              </div>
+        </div>
+    </mat-card>
+</div>
+
+<mat-paginator
+    [length]="totalElements"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+</mat-paginator>

@@ -1,0 +1,65 @@
+.footer {
+    background-color: #e3f2fd;
+    padding: 6px 10px 4px; // ⬅️ Reduced padding
+    color: #0d47a1;
+    font-size: 13px; // ⬅️ Slightly smaller font
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    margin-top: auto;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #0d47a1;
+    padding-bottom: 4px; // ⬅️ Reduced
+    margin-bottom: 4px;
+  }
+  
+  .feature-item {
+    text-align: center;
+    margin: 4px;
+    flex: 1 1 160px; // ⬅️ Shrunk min width
+  }
+  
+  .feature-item img {
+    width: 28px; // ⬅️ Smaller icons
+    height: auto;
+  }
+  
+  .feature-item p {
+    font-size: 11px; // ⬅️ Smaller text
+    margin-top: 4px;
+    line-height: 1.2;
+    color: #0d47a1;
+  }
+  
+  .footer-divider {
+    margin: 4px 0;
+    border: 0;
+    height: 1px;
+    background: #0d47a1;
+  }
+  
+  .footer-bottom-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px; // ⬅️ Slightly tighter
+    font-size: 12px; // ⬅️ Smaller font
+    padding-top: 4px;
+    text-align: center;
+    color: #0d47a1;
+  }
+  
+  .india-flag {
+    width: 16px; // ⬅️ Smaller flag
+    height: auto;
+  }
+  
+  .footer-separator {
+    margin: 0 4px;
+  }

@@ -5,6 +5,7 @@ import { UserStorageService } from '../storage/user-storage.service';
 
 const BASIC_URL = 'http://localhost:8765/ecomm/';
 // const BASIC_URL = 'http://localhost:8081/';
+const BASIC_URL2 = 'http://localhost:8765/ecommorderservice/';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +42,8 @@ export class AuthService {
           return false;
         })
       );
+  }
+  getOrderByTrackingId(trackingId: number): Observable<any> {
+    return this.http.get(BASIC_URL2 + `order/${trackingId}`);
   }
 }

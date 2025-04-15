@@ -1,0 +1,41 @@
+<div class="profile-container">
+    <div class="profile-card mat-elevation-z8">
+        <div class="profile-header">
+         
+            <h2 class="profile-name">
+                {{ user.name }}
+            </h2>
+            <p class="profile-email">
+                {{ user.email }}
+            </p>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="profile-details">
+            <div class="detail-row">
+                <span class="detail-label">Username:</span>
+                <span class="detail-value">
+                    {{ user.name }}
+                </span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value">
+                    {{ user.email }}
+                   
+                </span>
+            </div>
+            
+            
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="profile-actions">
+            <button mat-raised-button color="primary" (click)="ChangeUsername()">Change username </button>
+            
+            <button mat-raised-button color="primary" (click)="ChangePassword()">Change password</button>
+        </div>
+    </div>
+</div>

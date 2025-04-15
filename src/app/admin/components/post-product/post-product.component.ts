@@ -28,6 +28,7 @@ export class PostProductComponent implements OnInit {
       name: [null, [Validators.required]],
       price: [null, [Validators.required]],
       description: [null, [Validators.required]],
+      quantity : [0, [Validators.required]],
     });
 
     this.getAllCategories();
@@ -59,6 +60,7 @@ export class PostProductComponent implements OnInit {
 
   // Add product method with FormData for file upload
   addProduct(): void {
+    console.log('Form Values:', this.productForm.value);  // Check if quantity is in the form value
     if (this.productForm.valid && this.selectedFile) {
       const formData: FormData = new FormData();
       formData.append('img', this.selectedFile);
@@ -66,7 +68,8 @@ export class PostProductComponent implements OnInit {
       formData.append('name', this.productForm.get('name')?.value);
       formData.append('description', this.productForm.get('description')?.value);
       formData.append('price', this.productForm.get('price')?.value);
-
+      formData.append('quantity', this.productForm.get('quantity')?.value);
+  
       this.adminService.addProduct(formData).subscribe((res) => {
         if (res.id != null) {
           this.snackBar.open('Product added successfully', 'Close', {
@@ -86,4 +89,5 @@ export class PostProductComponent implements OnInit {
       }
     }
   }
+  
 }

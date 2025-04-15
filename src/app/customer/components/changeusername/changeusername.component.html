@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Change Username</h2>
+
+<form [formGroup]="usernameForm" (ngSubmit)="save()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>New Username</mat-label>
+    <input matInput formControlName="username" type = "text">
+    <mat-error *ngIf="usernameForm.get('username')?.hasError('required')">
+      Username is required.
+    </mat-error>
+    <mat-error *ngIf="usernameForm.get('username')?.hasError('minlength')">
+      Username must be at least 3 characters.
+    </mat-error>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="usernameForm.invalid">Save</button>
+  </div>
+</form>
