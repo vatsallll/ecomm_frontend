@@ -5,19 +5,19 @@
       <span class="navbar-brand">SHOPZILLA</span>
       <span class="spacer"></span>
 
-     
+
       <div class="navbar-buttons">
         <button mat-button routerLink="/order" routerLinkActive="active">Track Order</button>
         <button mat-button routerLink="/signup" routerLinkActive="active">Register</button>
         <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
       </div>
 
-     
+
       <button mat-icon-button class="hamburger-icon" (click)="toggleMenu()">
         <mat-icon>menu</mat-icon>
       </button>
 
-     
+
       <div class="dropdown-menu" [class.active]="isMenuOpen">
         <button mat-button routerLink="/order" routerLinkActive="active">Track Order</button>
         <button mat-button routerLink="/signup" routerLinkActive="active">Register</button>
@@ -26,7 +26,7 @@
     </mat-toolbar>
   </div>
 
-  
+
 
   <!-- Navbar for Admin Users -->
   <div *ngIf="isAdminLoggedIn">
@@ -64,7 +64,7 @@
   <!-- Navbar for Customer Users -->
   <div *ngIf="isCustomerLoggedIn">
     <mat-toolbar color="primary" class="navbar">
-       <span class="navbar-brand">SHOPZILLA</span>
+      <span class="navbar-brand">SHOPZILLA</span>
       <span class="spacer"></span>
 
       <!-- Normal Menu for Large Screens -->
@@ -94,8 +94,71 @@
     </mat-toolbar>
   </div>
 
+  <div *ngIf="showLandingPage" class="landing-page">
+    <div class="hero-content">
+
+      <div class="landing-page" *ngIf="showLandingPage">
+        <div class="hero-content">
+          <h1>Welcome to ShopZilla</h1>
+          <p></p>
+          <p>Your ultimate shopping destination. Discover top deals and premium products.</p>
+          <div> </div>
+          <a class="btn" routerLink="/login">Get Started</a>
+        </div>
+
+        <!-- Sexy floating icons -->
+        <div class="floating-icons">
+          <div class="icon icon1">🛒</div>
+          <div class="icon icon2">📦</div>
+          <div class="icon icon3">💳</div>
+          <div class="icon icon4">🛍️</div>
+          <div class="icon icon5">🧾</div>
+          <div class="icon icon6">🎁</div>
+          <div class="icon icon7">💰</div>
+          <div class="icon icon8">🚚</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
   <!-- Main Content -->
   <div class="content">
+    <!-- <div class="landing-container">
+      <div class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+          <h1>Welcome to <span>SHOPZILLA</span></h1>
+          <p>Your one-stop destination for trendsetting shopping.</p>
+          <div class="hero-buttons">
+            <button mat-raised-button color="accent" routerLink="/products">Shop Now</button>
+            <button mat-stroked-button color="primary" routerLink="/signup">Join Us</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="features">
+        <div class="feature">
+          <mat-icon>local_shipping</mat-icon>
+          <h3>Fast Delivery</h3>
+          <p>Lightning-fast shipping to your doorstep.</p>
+        </div>
+        <div class="feature">
+          <mat-icon>security</mat-icon>
+          <h3>Secure Payments</h3>
+          <p>100% secure transactions with SSL encryption.</p>
+        </div>
+        <div class="feature">
+          <mat-icon>thumb_up</mat-icon>
+          <h3>Top Quality</h3>
+          <p>Only premium products, hand-picked for you.</p>
+        </div>
+      </section>
+    </div> -->
+
+
     <router-outlet></router-outlet>
   </div>
 

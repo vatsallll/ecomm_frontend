@@ -10,24 +10,21 @@ import { ReviewOrderedProductComponent } from './components/review-ordered-produ
 import { ViewProductDetailComponent } from './components/view-product-detail/view-product-detail.component';
 import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
 
+import {CustomerGuard} from './customerguard.guard';
 const routes: Routes = [
-  { path: '', component: CustomerComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'my-orders', component: MyOrdersComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: '', component: CustomerComponent, canActivate: [CustomerGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [CustomerGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [CustomerGuard] },
+  { path: 'my-orders', component: MyOrdersComponent, canActivate: [CustomerGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [CustomerGuard] },
   {
     path: 'ordered_products/:orderId',
     component: ViewOrderedProductsComponent,
+    canActivate: [CustomerGuard],
   },
-  { path: 'review/:productId', component: ReviewOrderedProductComponent },
-  { path: 'product/:productId', component: ViewProductDetailComponent },
-  { path: 'wishlist', component: ViewWishlistComponent },
- 
-
-
-  
-
+  { path: 'review/:productId', component: ReviewOrderedProductComponent, canActivate: [CustomerGuard] },
+  { path: 'product/:productId', component: ViewProductDetailComponent, canActivate: [CustomerGuard] },
+  { path: 'wishlist', component: ViewWishlistComponent, canActivate: [CustomerGuard] },
 ];
 
 @NgModule({

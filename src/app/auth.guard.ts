@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { UserStorageService } from './services/storage/user-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,14 +18,21 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/login']);
       return false;
     }
-
+    
+    // if(UserStorageService.isAdminLoggedIn){
+    //   this.router.navigate(['/admin/dashboard'])
+    // }
     // Validate the token (e.g., check if it's expired)
-    if (this.isTokenExpired(token)) {
-      console.log('Token expired, redirecting to login');
+    if (!token || UserStorageService.isTokenExpired(token)) {
+      // If no valid token, redirect to login page
       this.router.navigate(['/login']);
       return false;
     }
 
+      // if(UserStorageService.isAdminLoggedIn){
+      //   this.router.navigate(['/admin'])
+      //   return false;
+      // }
     // If token is valid, check the user's role and redirect accordingly
     
     return true;

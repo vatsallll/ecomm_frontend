@@ -1,21 +1,58 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { inject, NgModule } from '@angular/core';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { UpdateProductComponent } from './admin/components/update-product/update-product.component';
 import { AuthGuard } from './auth.guard';
 import { TrackOrderComponent } from './track-order/track-order.component';
+import { UserStorageService } from './services/storage/user-storage.service';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    //canActivate: [AuthGuard], // Prevent logged-in users from accessing login
+    canActivate: [
+      () => {
+        const isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
+        const isCustomerLoggedIn = UserStorageService.isCustomerLoggedIn();
+        const router = inject(Router);
+  
+        if (isAdminLoggedIn) {
+          router.navigate(['/admin/dashboard']); // Redirect to admin dashboard
+          return false; // Prevent access to login
+        }
+  
+        if (isCustomerLoggedIn) {
+          router.navigate(['/customer/dashboard']); // Redirect to customer dashboard
+          return false; // Prevent access to login
+        }
+  
+        return true; // Allow access to login
+      }
+    ]
   },
   {
     path: 'signup',
     component: SignupComponent,
-    //canActivate: [AuthGuard], // Prevent logged-in users from accessing signup
+    canActivate: [
+      () => {
+        const isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
+        const isCustomerLoggedIn = UserStorageService.isCustomerLoggedIn();
+        const router = inject(Router);
+  
+        if (isAdminLoggedIn) {
+          router.navigate(['/admin/dashboard']); // Redirect to admin dashboard
+          return false; // Prevent access to login
+        }
+  
+        if (isCustomerLoggedIn) {
+          router.navigate(['/customer/dashboard']); // Redirect to customer dashboard
+          return false; // Prevent access to login
+        }
+  
+        return true; // Allow access to login
+      }
+    ]
   },
   {
     path: 'order',
@@ -34,11 +71,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
-  // {
-  //   path: '',
-  //   redirectTo: 'login',
-  //   pathMatch: 'full', // Redirect to login for empty path
-  // },
+  {
+    path: '', // Empty path
+    pathMatch: 'full', // Ensure it matches the empty path only
+    redirectTo: '', // No redirection or logic
+  },
   {
     path: '**',
     redirectTo: 'login', // Redirect any unknown routes to login

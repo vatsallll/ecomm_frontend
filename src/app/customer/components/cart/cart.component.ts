@@ -15,6 +15,7 @@ export class CartComponent {
   order: any;
   quantityy: number | null = null;
   errorMessage: string | null = null;
+  isLoading: boolean = false;
 
   constructor(
     private customerService: CustomerService,
@@ -27,19 +28,40 @@ export class CartComponent {
     this.getCart();
   }
 
+  // getCart(): Promise<void> {
+  //   return new Promise((resolve) => {
+  //     this.cartItems = [];
+  //     this.customerService.getCartByUserId().subscribe((res) => {
+  //       this.order = res;
+  //       res.cartItems.forEach((element) => {
+  //         element.processedImg = 'data:image/jpeg;base64,' + element.returnedImg;
+  //         this.cartItems.push(element);
+  //       });
+  //       resolve(); // Resolve the promise after cartItems is populated
+  //     });
+  //   });
+  // }
   getCart(): Promise<void> {
     return new Promise((resolve) => {
-      this.cartItems = [];
-      this.customerService.getCartByUserId().subscribe((res) => {
-        this.order = res;
-        res.cartItems.forEach((element) => {
-          element.processedImg = 'data:image/jpeg;base64,' + element.returnedImg;
-          this.cartItems.push(element);
-        });
-        resolve(); // Resolve the promise after cartItems is populated
-      });
+        this.isLoading = true; // Set loading to true
+        this.cartItems = [];
+        this.customerService.getCartByUserId().subscribe(
+            (res) => {
+                this.order = res;
+                res.cartItems.forEach((element) => {
+                    element.processedImg = 'data:image/jpeg;base64,' + element.returnedImg;
+                    this.cartItems.push(element);
+                });
+                this.isLoading = false; // Set loading to false
+                resolve(); // Resolve the promise after cartItems is populated
+            },
+            (error) => {
+                console.error("Error fetching cart:", error);
+                this.isLoading = false; // Handle error and set loading to false
+            }
+        );
     });
-  }
+}
   
 
   increaseQuantity(productId: any,quantity : any) {
